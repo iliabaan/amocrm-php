@@ -49,7 +49,7 @@ abstract class AbstractModel extends Request implements ArrayAccess, ModelInterf
      * @param mixed $offset Название поля для проверки
      * @return boolean Возвращает true или false
      */
-    public function offsetExists($offset)
+    public function offsetExists($offset): bool
     {
         return isset($this->values[$offset]);
     }
