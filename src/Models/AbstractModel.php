@@ -61,7 +61,7 @@ abstract class AbstractModel extends Request implements ArrayAccess, ModelInterf
      * @param mixed $offset Название поля для возврата
      * @return mixed Значение поля
      */
-    public function offsetGet($offset)
+    public function offsetGet($offset): mixed
     {
         if (isset($this->values[$offset])) {
             return $this->values[$offset];
@@ -79,7 +79,7 @@ abstract class AbstractModel extends Request implements ArrayAccess, ModelInterf
      * @param mixed $offset Название поля, которому будет присваиваться значение
      * @param mixed $value Значение для присвоения
      */
-    public function offsetSet($offset, $value)
+    #[ReturnTypeWillChange] public function offsetSet($offset, $value)
     {
         $setter = 'set' . Format::camelCase($offset);
 
@@ -96,7 +96,7 @@ abstract class AbstractModel extends Request implements ArrayAccess, ModelInterf
      * @link http://php.net/manual/en/arrayaccess.offsetunset.php
      * @param mixed $offset Название поля для удаления
      */
-    public function offsetUnset($offset)
+    public function offsetUnset($offset): void
     {
         if (isset($this->values[$offset])) {
             unset($this->values[$offset]);
@@ -122,7 +122,7 @@ abstract class AbstractModel extends Request implements ArrayAccess, ModelInterf
      * @param mixed $subtype Тип подтипа поля
      * @return $this
      */
-    public function addCustomField($id, $value, $enum = false, $subtype = false)
+    public function addCustomField($id, $value, $enum = false, $subtype = false): static
     {
         $field = [
             'id' => $id,
@@ -165,7 +165,7 @@ abstract class AbstractModel extends Request implements ArrayAccess, ModelInterf
      * @param mixed $values Значения заполняемого дополнительного поля типа мультиселект
      * @return $this
      */
-    public function addCustomMultiField($id, $values)
+    public function addCustomMultiField($id, $values): static
     {
         $field = [
             'id' => $id,
@@ -190,7 +190,7 @@ abstract class AbstractModel extends Request implements ArrayAccess, ModelInterf
      * @return bool
      * @throws Exception
      */
-    protected function checkId($id)
+    protected function checkId($id): bool
     {
         if (intval($id) != $id || $id < 1) {
             throw new Exception('Id must be integer and positive');
