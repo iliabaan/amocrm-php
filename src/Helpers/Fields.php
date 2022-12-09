@@ -125,7 +125,7 @@ class Fields implements \IteratorAggregate, \ArrayAccess, \Countable
      * @link http://php.net/manual/en/iteratoraggregate.getiterator.php
      * @return \Traversable Экземпляр объекта, использующего Iterator или Traversable
      */
-    public function getIterator()
+    public function getIterator(): \Traversable
     {
         return new \ArrayIterator($this->fields);
     }
