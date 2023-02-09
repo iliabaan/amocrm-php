@@ -193,8 +193,8 @@ class Unsorted extends AbstractModel
 
         $response = $this->postRequest('/api/unsorted/add/', $parameters);
 
-        if (isset($response['unsorted']['add']['data'])) {
-            $result = $response['unsorted']['add']['data'];
+        if (isset($response['unsorted']['add'])) {
+            $result = $response['unsorted']['add'];
         } else {
             return [];
         }
